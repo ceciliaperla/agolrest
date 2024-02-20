@@ -21,8 +21,10 @@
       "esri/Graphic",  
       "esri/layers/GraphicsLayer",
       "esri/geometry/Polyline", 
-      "esri/symbols/SimpleLineSymbol"  
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, Polyline, SimpleLineSymbol) {
+      "esri/symbols/SimpleLineSymbol",
+      "esri/geometry/Polygon", 
+      "esri/symbols/SimpleFillSymbol"  
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol) {
 
       esriConfig.apiKey = "AAPKcccbd0bd14364c8fb98ab424c79a960amI_rtu_pII6fBzsA1ROYiWHnHVCnKMkgFRlp00oDVBqz-GZe6StrwoE0m-2QA0Aj";
       const map = new Map({
@@ -88,8 +90,36 @@
             symbol: lineSymbol
         });
 
+        const polygon = new Polygon({
+            rings: [
+                [
+                    [-97.712312, 30.285677], // First point
+                    [-97.676607, 30.293384], // Second point
+                    [-97.709566, 30.275596], // Third point
+                    [-97.712312, 30.285677]  // Closing point (same as first to close the polygon)
+                ]
+            ]
+        });
+
+        // Create a symbol for drawing the polygon
+        const fillSymbol = new SimpleFillSymbol({
+            color: [227, 139, 79, 0.8],  // Orange color with opacity
+            outline: { // autocasts as new SimpleLineSymbol()
+              color: [255, 255, 255],
+                width: 1
+            }
+        });
+
+        // Create a graphic and add the geometry and symbol to it
+        const polygonGraphic = new Graphic({
+            geometry: polygon,
+            symbol: fillSymbol
+        });
+
+
         graphicsLayer.add(polylineGraphic);
         graphicsLayer.add(pointGraphic);
+        graphicsLayer.add(polygonGraphic);
     });
   </script>
 
