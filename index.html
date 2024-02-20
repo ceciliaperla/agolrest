@@ -19,8 +19,10 @@
       "esri/Map",
       "esri/views/MapView",
       "esri/Graphic",  
-      "esri/layers/GraphicsLayer"  
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+      "esri/layers/GraphicsLayer",
+      "esri/geometry/Polyline", 
+      "esri/symbols/SimpleLineSymbol"  
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, Polyline, SimpleLineSymbol) {
 
       esriConfig.apiKey = "AAPKcccbd0bd14364c8fb98ab424c79a960amI_rtu_pII6fBzsA1ROYiWHnHVCnKMkgFRlp00oDVBqz-GZe6StrwoE0m-2QA0Aj";
       const map = new Map({
@@ -67,35 +69,26 @@
           symbol: simpleMarkerSymbol,
           attributes: attributes,
           popupTemplate: popupTemplate  
-         });
+          });
 
-        graphicsLayer.add(pointGraphic);
-    });
-  </script>
-
-  <script>
-    require(["esri/Graphic", "esri/geometry/Polyline", "esri/symbols/SimpleLineSymbol"], function(Graphic, Polyline, SimpleLineSymbol) {
-        // Create a polyline geometry
-        const polyline = new Polyline({
+         const polyline = new Polyline({
             paths: [
               [-97.751425, 30.265865], // Starting point
               [-97.751425, 30.265865]  // Ending point
             ]
         });
 
-        // Create a symbol for drawing the polyline
         const lineSymbol = new SimpleLineSymbol({
             color: [226, 119, 40], // Orange
             width: 4
         });
 
-        // Create a graphic and add the geometry and symbol to it
         const polylineGraphic = new Graphic({
             geometry: polyline,
             symbol: lineSymbol
         });
 
-        // Add the graphic to the graphics layer
+        graphicsLayer.add(pointGraphic);
         graphicsLayer.add(polylineGraphic);
     });
   </script>
