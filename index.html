@@ -133,10 +133,9 @@
         graphicsLayer.add(pointGraphic);
         graphicsLayer.add(polygonGraphic);
         
-        const usaeduLayer = new FeatureLayer({
-          url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
+        const layer = new FeatureLayer({
+          url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/0"
         });
-        map.add(usaeduLayer);
 
 
         
