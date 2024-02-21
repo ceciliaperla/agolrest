@@ -6,11 +6,34 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
 
+  <!-- calls for the arcgis api's CSS file and JS library. -->
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
-</head>
-<body>
   <script src="https://js.arcgis.com/4.25/"></script>
 
+  <!-- Adding the modules, API key, and map constant needed for a full screen map app -->
+  <script>
+  
+    require([
+     "esri/config",
+      "esri/Map",
+      "esri/views/MapView"
+    ], function (esriConfig,Map, MapView) {
+
+      esriConfig.apiKey = "AAPK2cb19acc98eb406b80346e85af5aa1ffagWp07_WJVQlFAY2XL6xGrQ86USz9K6UzB1OaBd37PTIlYdHTo04S0-F9ETbr-dC";
+      const map = new Map({
+        basemap: "arcgis-topographic" // Basemap layer
+      });
+
+      const view = new MapView({
+          map: map,
+          center: [-97.7431, 30.2672], // Longitude, latitude
+          zoom: 13, // Zoom level
+          container: "viewDiv" // Div element
+        });
+    });
+  </script>
+
+  <!-- css to make a full screen map -->
   <style>
     html,
     body,
@@ -22,150 +45,11 @@
     }
   </style>
 
+</head>
+<body>
+
+  <!-- the div to displays the map  -->
   <div id="viewDiv"></div>
 
- <script>
-
-    require([
-      "esri/config",
-      "esri/Map",
-      "esri/views/MapView",
-      "esri/Graphic",  
-      "esri/layers/GraphicsLayer",
-      "esri/geometry/Polyline", 
-      "esri/symbols/SimpleLineSymbol",
-      "esri/geometry/Polygon", 
-      "esri/symbols/SimpleFillSymbol",
-      "esri/layers/FeatureLayer",
-      "esri/renderers/SimpleRenderer",
-      "esri/symbols/SimpleMarkerSymbol"  
-    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer, SimpleRenderer, SimpleMarkerSymbol) {
-
-      esriConfig.apiKey = "AAPK2683e27a53f64aaeaebb5569e8465191eprpyrjUzvGNvtn6AjZtZZHytctiXzBx_ZMFIKRZYGXdV9itvViwTG1GmD0anW6d";
-      
-      const map = new Map({
-        basemap: "streets"
-      });
-
-
-      const view = new MapView({
-        map: map,
-        center: [-97.7431, 30.2672],
-        zoom: 13,
-        container: "viewDiv"
-      });
-
-      const graphicsLayer = new GraphicsLayer();  
-      map.add(graphicsLayer);
-
-
-        const point = { //Create a point  
-          type: "point",  
-          longitude: -97.750689,    //long lat of Stevie Ray Vaughan Statue
-          latitude: 30.263098
-       };
-
-        const simpleMarkerSymbol = {  
-          type: "simple-marker",  
-          style: "diamond",
-          color: [0, 0, 139],  // Color of blues rock
-          outline: {  
-            color: [255, 255, 255], // White  
-            width: 1
-          }  
-        };
-
-        const popupTemplate = {
-         title: "{Name}",
-         content: "{Description}"
-        }
-       const attributes = {
-         Name: "Stevie Ray Vaughan Statue",
-         Description: "A bronze sculpture of Stevie Ray Vaughan by Ralph Helmick"
-        }
-
-        const pointGraphic = new Graphic({
-          geometry: point,
-          symbol: simpleMarkerSymbol,
-          attributes: attributes,
-          popupTemplate: popupTemplate
-        });
-
-        graphicsLayer.add(pointGraphic);
-
-        const polygon = new Polygon({
-            rings: [
-                [
-                    [-97.712312, 30.285677], // First point
-                    [-97.676607, 30.293384], // Second point
-                    [-97.709566, 30.275596], // Third point
-                    [-97.712312, 30.285677]  // Closing point (same as first to close the polygon)
-                ]
-            ]
-        });
-
-        // Create a symbol for drawing the polygon
-        const fillSymbol = new SimpleFillSymbol({
-            color: [227, 139, 79, 0.8],  // Orange color with opacity
-            outline: { // autocasts as new SimpleLineSymbol()
-              color: [255, 255, 255],
-                width: 1
-            }
-        });
-
-        // Create a graphic and add the geometry and symbol to it
-        const polygonGraphic = new Graphic({
-            geometry: polygon,
-            symbol: fillSymbol
-        });
-
-        graphicsLayer.add(polygonGraphic);
-
-        // Create a polyline geometry
-        const polyline = new Polyline({
-          paths: [
-              [-97.751425, 30.265865], // Starting point
-              [-97.756425, 30.270865]  // Ending point
-          ]
-        });
-
-        // Create a symbol for drawing the polyline
-        const lineSymbol = new SimpleLineSymbol({
-          color: [226, 119, 40], // Orange
-          width: 4
-        });
-
-        // Create a graphic and add the geometry and symbol to it
-        const polylineGraphic = new Graphic({
-          geometry: polyline,
-          symbol: lineSymbol
-        });
-
-        // Add the graphic to the graphics layer
-        graphicsLayer.add(polylineGraphic);
-
-        const symbol = new SimpleMarkerSymbol({
-          color: "blue",
-          size: "8px",  // pixels
-          outline: {  // autocasts as new SimpleLineSymbol()
-            color: [255, 255, 0],
-            width: 3  // points
-         }
-       });
-
-        const renderer = new SimpleRenderer({
-          symbol: symbol
-        });
-
-        const usaeduLayer = new FeatureLayer({
-          url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
-          renderer: renderer  // set the renderer to the layer
-        });
-
-          map.add(usaeduLayer);
-  
-    });
-    </script>
 </body>
-
 </html>
