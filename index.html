@@ -74,9 +74,15 @@
           attributes: attributes,
           popupTemplate: popupTemplate
         
-          });
+        });
 
-        graphicsLayer.add(pointGraphic);
+          graphicsLayer.add(pointGraphic);
+
+          const featureLayer = new FeatureLayer({
+           url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
+        });
+
+        map.add(featureLayer);
 
         // Create a polyline
         const polyline = new Polyline({
@@ -126,12 +132,6 @@
         });
 
         graphicsLayer.add(polygonGraphic);
-
-        const featureLayer = new FeatureLayer({
-          url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
-          });
-
-        map.add(featureLayer);
 
       });
   </script>
