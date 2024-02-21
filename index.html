@@ -167,9 +167,9 @@
 <script>
 
   require([
-  "esri/Map",
-  "esri/views/MapView",
-  "esri/layers/FeatureLayer"
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/FeatureLayer"
   ], function(Map, MapView, FeatureLayer) {
 
   var layer = new FeatureLayer({
@@ -187,7 +187,7 @@
     zoom: 10,
     center: [-97.769602, 30.325722] // adjust the center
 
-    map.add(usaeduLayer),
+    map.add(usaeduLayer);
   });
 });
 </script>
