@@ -131,12 +131,6 @@
           url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
         });
 
-        featureLayer.when(function(){
-          console.log("FeatureLayer loaded successfully");
-        }, function(error){
-          console.error("There was an error loading the FeatureLayer: ", error);
-        });
-
         map.add(featureLayer);
 
       });
