@@ -21,8 +21,11 @@
       "esri/layers/GraphicsLayer",
       "esri/symbols/SimpleMarkerSymbol",
       "esri/geometry/Polyline",
-      "esri/symbols/SimpleLineSymbol"
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol) {
+      "esri/symbols/SimpleLineSymbol",
+      "esri/geometry/Polygon", // Import the Polygon module
+      "esri/symbols/SimpleFillSymbol"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, // Add Polygon to the function parameters
+  SimpleFillSymbol) // Add SimpleFillSymbol to the function parameters) {
 
       esriConfig.apiKey = "AAPKcccbd0bd14364c8fb98ab424c79a960amI_rtu_pII6fBzsA1ROYiWHnHVCnKMkgFRlp00oDVBqz-GZe6StrwoE0m-2QA0Aj";
       const map = new Map({
@@ -97,7 +100,35 @@
 
         // Add the graphic to the graphics layer
         graphicsLayer.add(polylineGraphic);
-    });
+
+        const polygon = new Polygon({
+          rings: [
+            [-97.7431, 30.2672],
+            [-97.750689, 30.263098],
+            [-97.757, 30.27]
+            // Add more points if needed
+          ]
+        });
+
+        // Create a symbol for the polygon
+        const simpleFillSymbol = new SimpleFillSymbol({
+          color: [227, 139, 79, 0.8],  // Orange color with opacity
+          outline: {
+            color: [255, 255, 255], // White
+            width: 1
+          }
+        });
+
+        // Create a graphic and add the geometry and symbol to it
+        const polygonGraphic = new Graphic({
+          geometry: polygon,
+          symbol: simpleFillSymbol
+        });
+
+        / Add the graphic to the graphics layer
+        graphicsLayer.add(polygonGraphic);
+    // Remove the closing curly brace
+    );
   </script>
 
   <!-- css to make a full screen map -->
