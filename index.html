@@ -7,6 +7,8 @@
   <meta name="description" content="" />
 
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+</head>
+<body>
   <script src="https://js.arcgis.com/4.25/"></script>
 
   <style>
@@ -142,7 +144,6 @@
           view.goTo(usaeduLayer.fullExtent);
         });
 
-        require(["esri/Graphic", "esri/geometry/Polyline", "esri/symbols/SimpleLineSymbol", "esri/layers/FeatureLayer"], function(Graphic, Polyline, SimpleLineSymbol, FeatureLayer) {
       // Create a polyline geometry
       const polyline = new Polyline({
           paths: [
@@ -171,9 +172,10 @@
         });
         map.add(usaeduLayer);
 });
+  
+    </script>
+</body>
 
-
-</head>
 <body>
 
   <!-- the div to displays the map  -->
