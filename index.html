@@ -45,12 +45,21 @@
         const simpleMarkerSymbol = {  
           type: "simple-marker",  
           color: [0, 0, 139],  // Color of blues rock
-          style: "diamond"
           outline: {  
             color: [255, 255, 255], // White  
             width: 1
           }  
         };
+
+        const symbol = new SimpleMarkerSymbol({
+          color: "blue",
+          size: "8px",  // pixels
+          style: "diamond",  // change this to "diamond"
+          outline: {  // autocasts as new SimpleLineSymbol()
+            color: [255, 255, 0],
+            width: 3  // points
+          }
+        });
 
         const pointGraphic = new Graphic({  
         geometry: point,  
