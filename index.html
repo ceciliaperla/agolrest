@@ -120,13 +120,13 @@
         const usaeduLayer = new FeatureLayer({
           url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer" //get URL from AGOL Item Page
         });
-        
+
+        map.add(usaeduLayer);
         graphicsLayer.add(polylineGraphic);
         graphicsLayer.add(pointGraphic);
         graphicsLayer.add(polygonGraphic);
 
         
-        map.add(usaeduLayer);
     });
   </script>
 
