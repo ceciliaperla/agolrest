@@ -23,8 +23,9 @@
       "esri/geometry/Polyline",
       "esri/symbols/SimpleLineSymbol",
       "esri/geometry/Polygon", // Import the Polygon module
-      "esri/symbols/SimpleFillSymbol"
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol) {
+      "esri/symbols/SimpleFillSymbol",
+      "esri/layers/FeatureLayer"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer) {
 
       esriConfig.apiKey = "AAPKcccbd0bd14364c8fb98ab424c79a960amI_rtu_pII6fBzsA1ROYiWHnHVCnKMkgFRlp00oDVBqz-GZe6StrwoE0m-2QA0Aj";
       const map = new Map({
@@ -125,6 +126,12 @@
         });
 
         graphicsLayer.add(polygonGraphic);
+
+        const featureLayer = new FeatureLayer({
+          url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
+        });
+
+        map.add(featureLayer);
 
       });
   </script>
