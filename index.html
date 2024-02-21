@@ -22,6 +22,8 @@
     }
   </style>
 
+  <div id="viewDiv"></div>
+
  <script>
 
     require([
@@ -80,29 +82,14 @@
          Description: "A bronze sculpture of Stevie Ray Vaughan by Ralph Helmick"
         }
 
-        const pointGraphic = new Graphic({  
-          geometry: point,  
+        const pointGraphic = new Graphic({
+          geometry: point,
           symbol: simpleMarkerSymbol,
           attributes: attributes,
-          popupTemplate: popupTemplate  
-          });
-
-        const polyline = new Polyline({
-            paths: [
-              [-97.751425, 30.265865], // Starting point
-              [-97.756125, 30.270565]  // Ending point
-            ]
+          popupTemplate: popupTemplate
         });
 
-        const lineSymbol = new SimpleLineSymbol({
-            color: [226, 119, 40], // Orange
-            width: 4
-        });
-
-        const polylineGraphic = new Graphic({
-            geometry: polyline,
-            symbol: lineSymbol
-        });
+        graphicsLayer.add(pointGraphic);
 
         const polygon = new Polygon({
             rings: [
@@ -129,11 +116,31 @@
             geometry: polygon,
             symbol: fillSymbol
         });
-        
 
-        graphicsLayer.add(polylineGraphic);
-        graphicsLayer.add(pointGraphic);
         graphicsLayer.add(polygonGraphic);
+
+        // Create a polyline geometry
+        const polyline = new Polyline({
+          paths: [
+              [-97.751425, 30.265865], // Starting point
+              [-97.751430, 30.265870]  // Ending point
+          ]
+        });
+
+        // Create a symbol for drawing the polyline
+        const lineSymbol = new SimpleLineSymbol({
+          color: [226, 119, 40], // Orange
+          width: 4
+        });
+
+        // Create a graphic and add the geometry and symbol to it
+        const polylineGraphic = new Graphic({
+          geometry: polyline,
+          symbol: lineSymbol
+        });
+
+        // Add the graphic to the graphics layer
+        graphicsLayer.add(polylineGraphic);
 
         const usaeduLayer = new FeatureLayer({
             url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer" //get URL from AGOL Item Page
@@ -143,43 +150,8 @@
         usaeduLayer.when(function() {
           view.goTo(usaeduLayer.fullExtent);
         });
-
-      // Create a polyline geometry
-      const polyline = new Polyline({
-          paths: [
-              [-97.751425, 30.265865], // Starting point
-              [-97.751430, 30.265870]  // Ending point
-          ]
-      });
-
-      // Create a symbol for drawing the polyline
-      const lineSymbol = new SimpleLineSymbol({
-          color: [226, 119, 40], // Orange
-          width: 4
-      });
-
-      // Create a graphic and add the geometry and symbol to it
-      const polylineGraphic = new Graphic({
-          geometry: polyline,
-          symbol: lineSymbol
-      });
-
-      // Add the graphic to the graphics layer
-      graphicsLayer.add(polylineGraphic);
-
-      const usaeduLayer = new FeatureLayer({
-          url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer" //get URL from AGOL Item Page
-        });
-        map.add(usaeduLayer);
-});
   
     </script>
 </body>
 
-<body>
-
-  <!-- the div to displays the map  -->
-  <div id="viewDiv"></div>
-
-</body>
 </html>
