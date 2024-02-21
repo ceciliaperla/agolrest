@@ -127,11 +127,8 @@
         const usaeduLayer = new FeatureLayer({
           url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
         });
+        map.add(usaeduLayer);
 
-        const map = new Map({
-         basemap: "streets", // Basemap layer
-         layers: [usaeduLayer] // Add the feature layer here
-        });
 
         
     });
