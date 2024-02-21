@@ -19,8 +19,10 @@
       "esri/views/MapView",
       "esri/Graphic",  
       "esri/layers/GraphicsLayer",
-      "esri/symbols/SimpleMarkerSymbol"
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol) {
+      "esri/symbols/SimpleMarkerSymbol",
+      "esri/geometry/Polyline",
+      "esri/symbols/SimpleLineSymbol"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol) {
 
       esriConfig.apiKey = "AAPKcccbd0bd14364c8fb98ab424c79a960amI_rtu_pII6fBzsA1ROYiWHnHVCnKMkgFRlp00oDVBqz-GZe6StrwoE0m-2QA0Aj";
       const map = new Map({
@@ -72,6 +74,29 @@
           });
 
         graphicsLayer.add(pointGraphic);
+
+        // Create a polyline
+        const polyline = new Polyline({
+          paths: [
+            [-97.750689, 30.263098],
+            [-97.7431, 30.2672]
+          ]
+        });
+
+        // Create a symbol for drawing the polyline
+        const simpleLineSymbol = new SimpleLineSymbol({
+          color: [226, 119, 40],  // Orange
+          width: 2
+        });
+
+        // Create a graphic and add the geometry and symbol to it
+        const polylineGraphic = new Graphic({
+          geometry: polyline,
+          symbol: simpleLineSymbol
+        });
+
+        // Add the graphic to the graphics layer
+        graphicsLayer.add(polylineGraphic);
     });
   </script>
 
