@@ -36,8 +36,10 @@
       "esri/symbols/SimpleLineSymbol",
       "esri/geometry/Polygon", 
       "esri/symbols/SimpleFillSymbol",
-      "esri/layers/FeatureLayer"  
-    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer) {
+      "esri/layers/FeatureLayer",
+      "esri/renderers/SimpleRenderer",
+      "esri/symbols/SimpleMarkerSymbol"  
+    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer, SimpleRenderer, SimpleMarkerSymbol) {
 
       esriConfig.apiKey = "AAPK2683e27a53f64aaeaebb5569e8465191eprpyrjUzvGNvtn6AjZtZZHytctiXzBx_ZMFIKRZYGXdV9itvViwTG1GmD0anW6d";
       
@@ -142,9 +144,24 @@
         // Add the graphic to the graphics layer
         graphicsLayer.add(polylineGraphic);
 
+        const symbol = new SimpleMarkerSymbol({
+          color: "blue",
+          size: "8px",  // pixels
+          outline: {  // autocasts as new SimpleLineSymbol()
+            color: [255, 255, 0],
+            width: 3  // points
+         }
+       });
+
+        const renderer = new SimpleRenderer({
+          symbol: symbol
+        });
+
         const usaeduLayer = new FeatureLayer({
-            url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer" //get URL from AGOL Item Page
-          });
+          url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
+          renderer: renderer  // set the renderer to the layer
+        });
+
           map.add(usaeduLayer);
   
     });
