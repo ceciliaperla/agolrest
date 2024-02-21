@@ -18,8 +18,9 @@
       "esri/Map",
       "esri/views/MapView",
       "esri/Graphic",  
-      "esri/layers/GraphicsLayer"
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer) {
+      "esri/layers/GraphicsLayer",
+      "esri/symbols/SimpleMarkerSymbol"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol) {
 
       esriConfig.apiKey = "AAPK2683e27a53f64aaeaebb5569e8465191eprpyrjUzvGNvtn6AjZtZZHytctiXzBx_ZMFIKRZYGXdV9itvViwTG1GmD0anW6d";
       const map = new Map({
@@ -42,7 +43,7 @@
           latitude: 30.263098
         };
 
-        const symbol = {
+        const symbol = new SimpleMarkerSymbol({
           type: "simple-marker",
           color: "blue",
           size: "8px",  // pixels
@@ -51,7 +52,7 @@
             color: [255, 255, 0],
             width: 3  // points
           }
-        };
+        });
 
         const pointGraphic = new Graphic({  
           geometry: point,  
