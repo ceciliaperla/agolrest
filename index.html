@@ -22,7 +22,6 @@
 
  <script>
 
-let graphicsLayer;
     require([
       "esri/config",
       "esri/Map",
@@ -129,8 +128,6 @@ let graphicsLayer;
             symbol: fillSymbol
         });
         
-        graphicsLayer = new GraphicsLayer();  
-        map.add(graphicsLayer);
 
         graphicsLayer.add(polylineGraphic);
         graphicsLayer.add(pointGraphic);
