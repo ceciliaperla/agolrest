@@ -43,16 +43,15 @@
           latitude: 30.263098
         };
 
-        const simpleMarkerSymbol = new SimpleMarkerSymbol({
-          type: "simple-marker",
-          color: [0, 0, 255, 1],
-          size: "30px",  // pixels
-          style: "diamond",  // change this to "diamond"
-          outline: {  // autocasts as new SimpleLineSymbol()
-            color: [255, 255, 0],
-            width: 3  // points
-          }
-        });
+        const simpleMarkerSymbol = {  
+          type: "simple-marker",  
+          color: [0, 0, 139],  // Color of blues rock
+          style: "diamond",  // This will make the marker a diamond instead of a circle
+          outline: {  
+            color: [255, 255, 255], // White  
+            width: 1
+          }  
+        };
 
         const pointGraphic = new Graphic({  
           geometry: point,  
