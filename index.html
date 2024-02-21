@@ -162,6 +162,18 @@
           renderer: renderer  // set the renderer to the layer
         });
 
+        const map = new Map({
+          basemap: "streets",
+          layers: [usaeduLayer]  // add the layer to the map
+        });
+
+        const view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-95.7129, 37.0902],  // center the view to USA
+          zoom: 3  // zoom level
+        });
+
           map.add(usaeduLayer);
   
     });
