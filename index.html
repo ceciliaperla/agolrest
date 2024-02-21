@@ -162,34 +162,32 @@
       // Add the graphic to the graphics layer
       graphicsLayer.add(polylineGraphic);
   });
-</script>
 
-<script>
-
-  require([
+    require([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/FeatureLayer"
   ], function(Map, MapView, FeatureLayer) {
 
-  var layer = new FeatureLayer({
-    url: "https://services.arcgis.com/V6ZHFr6zdgNZuVG0/arcgis/rest/services/Colleges_and_Universities/FeatureServer/0" //get URL from AGOL Item Page
-  });
+    // Create a feature layer
+    var layer = new FeatureLayer({
+      url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
+    });
 
-  var map = new Map({
-    basemap: "topo-vector",
-    layers: [layer] // add the layer to the map
-  });
+    // Create a map and add the layer
+    var map = new Map({
+      basemap: "topo-vector",
+      layers: [layer]
+    });
 
-  var view = new MapView({
-    container: "viewDiv",
-    map: map,
-    zoom: 10,
-    center: [-97.769602, 30.325722] // adjust the center
-
-    map.add(usaeduLayer);
+    // Create a map view
+    var view = new MapView({
+      container: "viewDiv",
+      map: map,
+      zoom: 10,
+      center: [-90, 38]
+    });
   });
-});
 </script>
 
 </head>
