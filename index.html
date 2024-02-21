@@ -6,16 +6,23 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
 
-  <!-- calls for the arcgis api's CSS file and JS library. -->
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
 
-  <!-- Adding the modules, API key, and map constant needed for a full screen map app -->
-  <script>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
 
-
+ <script>
     require([
-     "esri/config",
+      "esri/config",
       "esri/Map",
       "esri/views/MapView",
       "esri/Graphic",  
@@ -25,22 +32,25 @@
       "esri/geometry/Polygon", 
       "esri/symbols/SimpleFillSymbol",
       "esri/layers/FeatureLayer"  
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer) {
+    ], function (esriConfig, Map, MapView, Graphic, GraphicsLayer, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer) {
 
       esriConfig.apiKey = "AAPK2683e27a53f64aaeaebb5569e8465191eprpyrjUzvGNvtn6AjZtZZHytctiXzBx_ZMFIKRZYGXdV9itvViwTG1GmD0anW6d";
+      
       const map = new Map({
-        basemap: "streets" // Basemap layer
+        basemap: "streets"
       });
 
+
       const view = new MapView({
-          map: map,
-          center: [-97.7431, 30.2672], // Longitude, latitude
-          zoom: 13, // Zoom level
-          container: "viewDiv" // Div element
-        });
-       
-        const graphicsLayer = new GraphicsLayer();  
-        map.add(graphicsLayer);
+        map: map,
+        center: [-97.7431, 30.2672],
+        zoom: 13,
+        container: "viewDiv"
+      });
+
+      const graphicsLayer = new GraphicsLayer();  
+      map.add(graphicsLayer);
+
 
         const point = { //Create a point  
           type: "point",  
