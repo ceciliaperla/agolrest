@@ -172,21 +172,21 @@
       graphicsLayer.add(polylineGraphic);
   });
 
-    require([
+  require([
     "esri/Map",
     "esri/views/MapView",
     "esri/layers/FeatureLayer"
   ], function(Map, MapView, FeatureLayer) {
 
     // Create a feature layer
-    var layer = new FeatureLayer({
+    var usaeduLayer = new FeatureLayer({
       url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
     });
 
     // Create a map and add the layer
     var map = new Map({
       basemap: "topo-vector",
-      layers: [layer]
+      layers: [usaeduLayer]
     });
 
     // Create a map view
@@ -197,9 +197,8 @@
       center: [-90, 38]
     });
 
-    map.add(usaeduLayer);
-
   });
+</script>
 </script>
 
 </head>
