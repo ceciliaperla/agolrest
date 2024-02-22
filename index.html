@@ -91,6 +91,12 @@
 
          map.add(featureLayer);
 
+         const airportsLayer = new FeatureLayer({
+          url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_Perla/FeatureServer"
+        });
+
+         map.add(airportsLayer);
+
         // Create a polyline
         const polyline = new Polyline({
           paths: [
