@@ -91,11 +91,22 @@
 
          map.add(featureLayer);
 
-         const airportsLayer = new FeatureLayer({
-          url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_Perla/FeatureServer"
-        });
+          const airportRenderer = {
+          "type": "simple",
+          "symbol": {
+            "type": "picture-marker",
+            "url": "https://sounny.github.io/agol/outline_local_airport_black_24dp.png",
+            "width": "18px",
+            "height": "18px"
+          }
+        }
 
-         map.add(airportsLayer);
+         const airportsLayer = new FeatureLayer({
+            url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_Perla/FeatureServer",
+            renderer: airportRenderer
+          });
+
+          map.add(airportsLayer);
 
         // Create a polyline
         const polyline = new Polyline({
