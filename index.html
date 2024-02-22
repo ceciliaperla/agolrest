@@ -78,9 +78,18 @@
 
           graphicsLayer.add(pointGraphic);
 
+          const popupEduusa = {
+            "title": "EDUs",
+            "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+        }
+
           const featureLayer = new FeatureLayer({
            url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer"
         });
+        
+            outFields: ["NAME","TOT_ENROLL"],
+            popupTemplate: popupEduusa
+          });
 
         map.add(featureLayer);
 
