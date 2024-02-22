@@ -135,13 +135,15 @@
          const airportsLayer = new FeatureLayer({
             url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/US_Airports_Perla/FeatureServer",
             renderer: airportRenderer, 
-            definitionExpression: "Fac_Type = 'AIRPORT' OR Fac_Type = 'HELIPORT'", //adding sql to filter for airports
+            definitionExpression: "Fac_Type = 'AIRPORT'", //adding sql to filter for airports
             labelingInfo: [airportLabels] //adding the labels
           });
 
          const airportLayer = new FeatureLayer({
             url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports/FeatureServer",
-            renderer: heliportRenderer
+            renderer: heliportRenderer,
+            definitionExpression: "Fac_Type = 'HELIPORT'",
+            labelingInfo: [airportLabels]
           });
 
           map.add(airportsLayer);
