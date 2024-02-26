@@ -25,8 +25,9 @@
       "esri/geometry/Polygon", // Import the Polygon module
       "esri/symbols/SimpleFillSymbol",
       "esri/layers/FeatureLayer",
-      "esri/widgets/Editor"
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer, Editor) {
+      "esri/widgets/Editor",
+      "esri/widgets/Legend"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer, Editor, Legend) {
 
       esriConfig.apiKey = "AAPK56419a6214b44ea4bcb814fec9ef171eVhAxzMstqNZOcF3t1U-exAFnYlWyzkQVYSOD8xzziKyHegsVdDZxaECBoXxisXR6";
       const map = new Map({
@@ -207,6 +208,15 @@
 
             // Add the widget to the view
             view.ui.add(editor, "top-right");
+
+            // Create a new Legend instance and add it to the map view
+            var legend = new Legend({
+              view: view,
+              layerInfos: [{
+                layer: myAirports,
+                title: "My Airports"
+              }]
+            });
 
         // Create a polyline
         const polyline = new Polyline({
