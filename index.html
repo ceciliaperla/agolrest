@@ -176,7 +176,7 @@
             },
             labelPlacement: "above-center",
             labelExpressionInfo: {
-              expression: "$feature.AirportCode"
+              expression:  "Concatenate([$feature.AirportCode, $feature.AirportName], ' - ')"
             }
           };
 
@@ -187,7 +187,7 @@
             labelingInfo: [myAirportLabels], //adding the labels
           
             //adding the popup here
-            outFields: ["AirportCode"],
+            outFields: ["AirportCode", "AirportName"],
 
           });
 
