@@ -150,9 +150,20 @@
           map.add(airportLayer);
           map.add(airportsLayer);
 
+          const visitedairportRenderer = {
+            "type": "simple",
+            "symbol": {
+              "type": "picture-marker",
+              "url": "https://ceciliaperla.github.io/agolrest/icons8-airport-50.png",
+              "width": "18px",
+              "height": "18px"
+            }
+          }
+
           //adding the const for the feature layer
           const myAirports = new FeatureLayer({
             url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Visited_Airports/FeatureServer",
+            renderer: visitedairportRenderer,
           
             //adding the popup here
             outFields: ["AirportCode"],
