@@ -24,8 +24,9 @@
       "esri/symbols/SimpleLineSymbol",
       "esri/geometry/Polygon", // Import the Polygon module
       "esri/symbols/SimpleFillSymbol",
-      "esri/layers/FeatureLayer"
-    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer) {
+      "esri/layers/FeatureLayer",
+      "esri/widgets/Editor"
+    ], function (esriConfig,Map, MapView, Graphic, GraphicsLayer, SimpleMarkerSymbol, Polyline, SimpleLineSymbol, Polygon, SimpleFillSymbol, FeatureLayer, Editor) {
 
       esriConfig.apiKey = "AAPK56419a6214b44ea4bcb814fec9ef171eVhAxzMstqNZOcF3t1U-exAFnYlWyzkQVYSOD8xzziKyHegsVdDZxaECBoXxisXR6";
       const map = new Map({
@@ -148,6 +149,32 @@
           
           map.add(airportLayer);
           map.add(airportsLayer);
+
+          //adding the const for the feature layer
+          const myAirports = new FeatureLayer({
+            url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/My_Visited_Airports/FeatureServer",
+          
+            //adding the popup here
+            outFields: ["AirportCode"],
+
+          });
+
+           //adding the feature layer to the map
+           map.add(myAirports);
+
+           // Set the point layer's LayerInfo
+            const pointInfos = {
+              layer: myAirports
+            }
+
+            // Begin Editor constructor
+            const editor = new Editor({
+              view: view,
+              layerInfos: [pointInfos]
+            }); // End Editor constructor
+
+            // Add the widget to the view
+            view.ui.add(editor, "top-right");
 
         // Create a polyline
         const polyline = new Polyline({
